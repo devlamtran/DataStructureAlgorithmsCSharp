@@ -132,26 +132,37 @@ namespace DataStructure
         //delete element duplicate in given array
         //input : given an array
         //output : return an array after delete element duplicate in given array
-        public static int[] DeleteElementDuplicateInArray(int[] input, int index)
+        public static int[] DeleteElementDuplicateInArray(int[] input)
         {
-            if (index < 0 || index > input.Length)
+            
+            int countNumDuplicate = 0;
+            int prevIndex = 0;
+           
+            for (int i = 0; i < input.Length ; i++)
             {
-                return input;
-            };
-            int[] output = new int[input.Length - 1];
-            for (int i = 0; i < output.Length; i++)
-            {
-                if (i < index)
+                bool foundDup = false;
+                for (int j = 0; j < i; j++)
                 {
-                    output[i] = input[i];
+                    if (input[i] == input[j])
+                    {
+                        foundDup = true;
+                        countNumDuplicate++;
+                        break;
+                    }
                 }
-                else
+                if (foundDup == false)
                 {
-                    output[i] = input[i + 1];
+                    input[prevIndex] = input[i];
+                    prevIndex++;
                 }
-
             }
-            return output;
+
+
+            for (int i = 1; i <= countNumDuplicate; i++)
+            {
+                input[input.Length - i] = 0;
+            }
+            return input;
         }
     }
 }
