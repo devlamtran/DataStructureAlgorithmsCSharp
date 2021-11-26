@@ -118,15 +118,15 @@ namespace DataStructure
         //output : return an array after edit elements with given value
         public static int[] EditGivenElementWithValueInArray(int pos, int value, int[] input)
         {
-
-            for (int i = 0; i < input.Length; i++)
+            int[] output = input;
+            for (int i = 0; i < output.Length; i++)
             {
                 if (i == pos)
                 {
-                    input[i] = value;
+                    output[i] = value;
                 }
             }
-            return input;
+            return output;
         }
 
         //delete element duplicate in given array
@@ -151,6 +151,7 @@ namespace DataStructure
             {
                 return input;
             }
+           
             int[] indexElementDuplicates = new int[countElementDuplicate];
             for (int i = 0; i < input.Length; i++)
             {
@@ -173,6 +174,57 @@ namespace DataStructure
 
             return output;
 
+        }
+
+        //sort element Desc in given array
+        //input : given an array stores elements
+        //output : return an array after sort element in given array
+        public static int[] SortElementInArrayDesc(int[] input)
+        {
+            int[] output;
+           
+            int tmp;
+            for (int i = 0; i <input.Length; i++)
+            {
+                for (int j = i+1; j < input.Length; j++)
+                {
+                    if (input[j]>input[i])
+                    {
+                        tmp = input[i];
+                        input[i] = input[j];
+                        input[j] = tmp;
+                    }
+                }
+                
+            }
+            output = input;
+            return output;         
+
+        }
+
+        //sort element Asc in given array
+        //input : given an array stores elements
+        //output : return an array after sort element in given array
+        public static int[] SortElementInArrayAsc(int[] input)
+        {
+            int[] output;
+            
+            int tmp;
+            for (int i = 0; i < input.Length; i++)
+            {
+                for (int j = i + 1; j < input.Length; j++)
+                {
+                    if (input[j] < input[i])
+                    {
+                        tmp = input[i];
+                        input[i] = input[j];
+                        input[j] = tmp;
+                    }
+                }
+
+            }
+            output = input;
+            return output;
         }
 
     }
