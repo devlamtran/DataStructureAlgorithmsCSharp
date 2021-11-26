@@ -82,10 +82,10 @@ namespace DataStructure
             int[] output = null;
             for (int i = 0; i < indexElementSameGivenElements.Length; i++)
             {
-                output = DeleteElementWithIndexInArray(input, indexElementSameGivenElements[i]);
+                output = DeleteElementInArray(element, DeleteElementWithIndexInArray(input, indexElementSameGivenElements[i]));
             }
 
-            return DeleteElementInArray(element, output);
+            return output;
         }
 
         //delete element with index in given array
@@ -130,39 +130,53 @@ namespace DataStructure
         }
 
         //delete element duplicate in given array
-        //input : given an array
+        //input : given an array stores duplicate element
         //output : return an array after delete element duplicate in given array
         public static int[] DeleteElementDuplicateInArray(int[] input)
         {
-            
-            int countNumDuplicate = 0;
-            int prevIndex = 0;
-           
-            for (int i = 0; i < input.Length ; i++)
+            int[] output = null;
+            int countElementDuplicate = 0;
+            for (int i = 0; i < input.Length; i++)
             {
-                bool foundDup = false;
                 for (int j = 0; j < i; j++)
                 {
                     if (input[i] == input[j])
                     {
-                        foundDup = true;
-                        countNumDuplicate++;
-                        break;
+                        countElementDuplicate++;
                     }
                 }
-                if (foundDup == false)
-                {
-                    input[prevIndex] = input[i];
-                    prevIndex++;
-                }
+                
             }
-
-
-            for (int i = 1; i <= countNumDuplicate; i++)
+            if (countElementDuplicate == 0)
             {
-                input[input.Length - i] = 0;
+                return input;
             }
-            return input;
+            int[] indexElementDuplicates = new int[countElementDuplicate];
+            for (int i = 0; i < input.Length; i++)
+            {
+                for (int j = 0; j < i; j++)
+                {
+                    if (input[i] == input[j])
+                    {
+                        for (int k = 0; k < indexElementDuplicates.Length; k++)
+                        {
+                            indexElementDuplicates[k] = i;
+                        }
+                    }
+                }                       
+            }
+            
+            for (int i = 0; i < indexElementDuplicates.Length; i++)
+            {
+                output = DeleteElementDuplicateInArray(DeleteElementWithIndexInArray(input, indexElementDuplicates[i]));
+            }
+
+            return output;
+
         }
+
     }
 }
+        
+    
+

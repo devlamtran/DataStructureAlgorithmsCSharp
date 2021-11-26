@@ -7,7 +7,7 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            int[] input = {1,2,3,2,5,6,2,8};
+            int[] input = {1,2,2,4,5,6,5,8,9,9};
             Console.WriteLine("After delete element has value 5");
 
             for (int i = 0; i < ArrayStructure.DeleteElementDuplicateInArray(input).Length; i++)
